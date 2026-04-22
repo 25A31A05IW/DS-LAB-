@@ -1,0 +1,64 @@
+//implement insertion operation on SLL
+#include <iostream>
+using namespace std;
+ 
+class node
+{
+    public:
+    int data;
+    node*link;
+};
+int main()
+{
+    node*h=NULL,*cn=NULL,*t=NULL;
+    int val,ch;
+    do
+    {
+        cn=newnode()
+        cout<<"enter node data";
+        cin>>val;
+        cn->data=val;
+        cn->link=NULL;
+    if(h==NULL)
+    {
+        h=cn;
+        t=cn;
+    }
+    else
+    {
+        t->link=cn;
+        t=cn;
+    }
+    cout<<"\n do you want to continue 1/0:\n";
+    cin>>ch;
+    }
+    while(ch);
+    //display linked list data 
+    cout<<"\n linked list data:\n";
+    t=h;
+    while(t!=NULL)
+    {
+        cout<<t->data<<" ";
+        t=t->link;
+    }
+    //insertion at starting
+    t=h;
+    {
+        cn=newnode()
+        cout<<"\n enter node data\n";
+        cin>>val;
+        cn->data=val;
+        cn->link=NULL;
+    }
+    cn->link=t;
+    h=cn;
+    t=cn;
+    //display linked list data
+    cout<<"\n linked list data after insertion operation:\n";
+    t=h;
+    while(t!=NULL)
+    {
+        cout<<t->data<<" ";
+        t=t->link;
+    }
+}
