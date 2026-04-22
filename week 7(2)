@@ -1,0 +1,74 @@
+//stack using linked list
+#include<iostream>
+using namespace std;
+int main()
+class node
+{
+	public:
+		int data;
+		node*link;
+};
+int main()
+{
+	node*top=NULL,*cn=NULL,*t=NULL;
+	int val,op;
+	do
+	{
+		cout<<"\n1:PUSH\n2:POP\n3:PEEK\n4:DISPLAY\n5:EXIT\nCHOOSE ANY OPTION";
+		cin>>op;
+		switch(op)
+		{
+			case 1:cn=new node();
+			       cout<<"\n enter node data";
+			       cin>>val;
+			       cn->data=val;
+			       cn->link=NULL;
+			       {
+			       	top=cn;
+			       	t=cn;
+				   }
+			       else
+			       {
+			       	cn->link=t;
+			       	top=cn;
+			       	t=cn;
+				   }
+				   break;
+		    case 2:if(top==NULL)
+			       cout<<"stack is underflow";
+				   else
+				   {
+				   	cout<<top->data<<"is popped";
+				   	top=t->link;
+				   	t->link=NULL;
+				   	delete t;
+				   }
+				   break;
+		    case 3:if(top==NULL)
+			       cout<<"stack is underflow";
+				   else
+				   {
+				   	cout<<top->data<<"is top node value";
+				   }
+				   break;
+			case 4:if(top==NULL)
+			       cout<<"stack is underflow";
+				   else
+				   {
+				   	t=top;
+				   	while(t!=NULL)
+				   	{
+				   		cout<<t->data<<" ";
+				   		t=t->link;
+					}
+				   }
+				   break;
+			case 5:exit(0);
+			default:cout<<"invalid option";
+	    }
+	cout<<"do you want continue 1/0";
+	cin>>op;	   	   		   		   
+	}
+		while(op);
+}
+
