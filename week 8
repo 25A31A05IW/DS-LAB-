@@ -1,0 +1,220 @@
+1) //QUEUE USING ARRAYS
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int q[100], item, f = -1, r = -1, i, size, choice, cont;
+
+    cout << "\nEnter size of queue: ";
+    cin >> size;
+
+    do
+    {
+        cout << "\n1: Enqueue\n2: Dequeue\n3: Peek\n4: Display\n5: Exit";
+        cout << "\nChoose any one option: ";
+        cin >> choice;
+
+        switch(choice)
+        {
+            case 1:
+                if(r == size - 1)
+                    cout << "\nQueue Overflow";
+                else
+                {
+                    if(f == -1)
+                        f = 0;
+                    cout << "Enter item: ";
+                    cin >> item;
+                    r++;
+                    q[r] = item;
+                }
+                break;
+
+            case 2:
+                if(f == -1 || f > r)
+                    cout << "\nQueue Underflow";
+                else
+                {
+                    cout << "\nDeleted item: " << q[f];
+                    f++;
+                    if(f > r) // reset queue
+                        f = r = -1;
+                }
+                break;
+
+            case 3:
+                if(f == -1 || f > r)
+                    cout << "\nQueue Underflow";
+                else
+                    cout << "\nFront element: " << q[f];
+                break;
+
+            case 4:
+                if(f == -1 || f > r)
+                    cout << "\nQueue Underflow";
+                else
+                {
+                    cout << "\nQueue elements: ";
+                    for(i = f; i <= r; i++)
+                        cout << q[i] << " ";
+                }
+                break;
+
+            case 5:
+                exit(0);
+
+            default:
+                cout << "\nInvalid option";
+        }
+
+        cout << "\nEnter 1 to continue OR 0 to exit: ";
+        cin >> cont;
+
+    } while(cont);
+
+    return 0;
+}
+
+2) //QUEUE USING LINKED LIST
+#include <iostream>
+using namespace std;
+
+class node
+{
+public:
+    int data;
+    node *link;
+};
+
+int main()
+{
+    node *f = NULL, *r = NULL, *cn, *t;
+    int ch;
+
+    do
+    {
+        cout << "\n1.Enqueue\n2.Dequeue\n3.Peek\n4.Display\n5.Exit";
+        cout << "\nEnter your choice: ";
+        cin >> ch;
+
+        switch(ch)
+        {
+            case 1: // Enqueue
+                cn = new node;
+                cout << "Enter item: ";
+                cin >> cn->data;
+                cn->link = NULL;
+
+                if(f == NULL)
+                {
+                    f = r = cn;
+                }
+                else
+                {
+                    r->link = cn;
+                    r = cn;
+                }
+                cout<< cn->data <<" is Inserted into queue";
+                break;
+
+            case 2: // Dequeue
+                if(f == NULL)
+                {
+                    cout << "\nQueue Underflow";
+                }
+                else
+                {
+                    t = f;
+                    cout << "\nDeleted item: " << t->data;
+                    f = f->link;
+                    delete t;
+
+                    if(f == NULL)
+                        r = NULL;
+                }
+                break;
+
+            case 3: // Peek
+                if(f == NULL)
+                    cout << "\nQueue is empty";
+                else
+                    cout << "\nFront element: " << f->data;
+                break;
+
+            case 4: // Display
+                if(f == NULL)
+                {
+                    cout << "\nQueue is empty";
+                }
+                else
+                {
+                    t = f;
+                    cout << "\nQueue elements: ";
+                    while(t != NULL)
+                    {
+                        cout << t->data << " ";
+                        t = t->link;
+                    }
+                }
+                break;
+
+            case 5:
+                cout << "\nExiting...";
+                break;
+
+            default:
+                cout << "\nInvalid choice";
+        }
+        cout<<"\n ENTER 1 TO CONTINUE 0 TO EXIT";
+        cin>>ch;
+
+    } while(ch);
+
+    return 0;
+}
+
+3) //EVALUATION OF POSTFIX EXPRESSION USING STACK
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+    int stack[50], top = -1;
+    char exp[50];
+    int i = 0, op1, op2, result;
+
+    cout << "Enter postfix expression: ";
+    cin >> exp;
+
+    while(exp[i] != '\0')
+    {
+        // If operand (digit)
+        if(isdigit(exp[i]))
+        {
+            stack[++top] = exp[i] - '0'; // convert char to int
+        }
+        else // operator
+        {
+            op2 = stack[top--];
+            op1 = stack[top--];
+
+            switch(exp[i])
+            {
+                case '+': result = op1 + op2; break;
+                case '-': result = op1 - op2; break;
+                case '*': result = op1 * op2; break;
+                case '/': result = op1 / op2; break;
+                case '^': result = pow(op1, op2); break;
+            }
+
+            stack[++top] = result;
+        }
+        i++;
+    }
+
+    cout << "Result = " << stack[top];
+
+    return 0;
+}
