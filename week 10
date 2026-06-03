@@ -1,0 +1,110 @@
+1) //div hash function 
+//h(k)=floor(m*(k*a))%m
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main()
+{
+    int key,m,a=0.,i,loc,nk;
+    cout<<"enter size of the hash table";
+    cin>>m;
+    int hash[m];
+    for(i=0;i<m;i++)
+    {
+        hash[i]=-999;
+    }
+    cout<<"enter total number of key values";
+    cin>>nk;
+    for(i=0;i<nk;i++)
+    {
+        cout<<"enter key value"<<i+1<<" : ";
+        cin>>key;
+        loc=key%m;
+        if(hash[loc]==-999)
+        {
+            hash[loc]=key;
+        }
+        else
+        cout<<"collision occured to insert key:"<<key;
+    }
+    cout<<"\n hash table status \n";
+    for(i=0;i<m;i++)
+    cout<<hash[i]<<" ";
+}
+
+2) //multiplication hash function
+//loc=floor(m*(k*a))%m
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main()
+{
+    int key,m,a=0.,i,loc,nk;
+    cout<<"enter size of the hash table";
+    cin>>m;
+    int hash[m];
+    for(i=0;i<m;i++)
+    {
+        hash[i]=-999;
+    }
+    cout<<"enter total number of key values";
+    cin>>nk;
+    for(i=0;i<nk;i++)
+    {
+        cout<<"enter key value"<<i+1<<" : ";
+        cin>>key;
+        loc=(int)floor(m*(nk*a))%m;
+        if(hash[loc]==-999)
+        {
+            hash[loc]=key;
+        }
+        else
+        cout<<"collision occured to insert key:"<<key;
+    }
+    cout<<"\n hash table status \n";
+    for(i=0;i<m;i++)
+    cout<<hash[i]<<" ";
+}
+
+3) //linear probing collision handling technique
+#include<iostream>
+using namespace std;
+int main()
+{
+    int m,i,key,nk,loc,j;
+    cout<<"enter size of the hash table";
+    cin>>m;
+    int h[m];
+    for(i=0;i<m;i++)
+    {
+        h[i]=-999;
+    }
+    cout<<"enter number of key elements";
+    cin>>nk;
+    for(i=0;i<nk;i++)
+    {
+        cout<<"enter key"<<i+1;
+        cin>>key;
+        loc=key%m;
+        if(h[loc]==-999)
+        {
+            h[loc]=key;
+        }
+        else
+        {
+            j=0;
+            while(h[loc]!=-999)
+            {
+                loc=(loc+j)%m;
+                j++;
+            }
+            h[loc]=key;
+        }
+    }
+    cout<<"hash table status\n";
+    for(i=0;i<m;i++)
+  {
+      cout<<h[i]<<" ";
+  }
+}
+  
